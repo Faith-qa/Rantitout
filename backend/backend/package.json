@@ -1,0 +1,16 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.7.5",
+    "serverless-http": "^2.7.0"
+  },
+  "devDependencies": {
+    "serverless-offline": "^12.0.0"
+  }
+}
