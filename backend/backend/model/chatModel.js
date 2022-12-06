@@ -9,11 +9,12 @@ const chatSchema = mongoose.Schema({
     date: {type: Date, unique: true, sparse: true},
     hi: String,
     HowAreYou: String,
+    whatDidNotgoWellToday: String,
     tellMeMore: String,
     isThatAll: String,
     whatAreWeLearning: String,
-    isitReallyWorthTheStress: String,
-
+    whatCanWeDoDifferently: String,
+    anyAdviceforUs: String,
 },
 {
     timestamp: true
