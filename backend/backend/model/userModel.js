@@ -6,11 +6,11 @@ const userSchema = mongoose.Schema({
         type: String,
         required: [true, "please add an email"],
     },
-        password: {
-            type: String,
-            required: [true, "user must have a password"]
-        },
-        
+    password: {
+        type: String,
+        required: [true, "user must have a password"]
+    },
+    imageUrl: String
     },
     {
         timestamp: true,

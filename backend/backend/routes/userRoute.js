@@ -8,7 +8,8 @@ const {
 } = require('../controllers/userController');
 
 const {protect} = require('../middleware/authMiddleware')
-
+const upload = require('../middleware/upload')
+const {uploadToCloudinary, removeFromCloudinary} = require('../config/cloudinary')
 router 
         .route('/')
         .post(createUser)
@@ -16,5 +17,11 @@ router
         .put(updateUser)
 
 router.post('/login', loginUser)
+router.post('/image', upload.single("userImage"), async(req, res)=>{
+    console.log(req.file)
+    const data = await uploadToCloudinary(req.file.path, "userImage")
+    console.log(data)
+    res.status(200).json(data)
+})
 
 module.exports = router;

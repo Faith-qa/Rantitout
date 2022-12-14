@@ -4,10 +4,12 @@
   "description": "",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.32.0",
     "express": "^4.17.1",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.7.5",
+    "multer": "^1.4.4",
     "serverless-http": "^2.7.0"
   },
   "devDependencies": {
