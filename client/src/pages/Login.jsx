@@ -3,12 +3,15 @@ import '../styles.scss'
 //import Add from '../img/addAvatar.png'
 import axios from "axios";
 import { useState, useRef } from 'react';
+import { useNavigate, useNavigation } from 'react-router-dom'
+
 
 
 const url = `${process.env.REACT_APP_BASE_URL}/api/v1/users/login`;
 console.log(url)
 
 export const Login = () => {
+  const navigate = useNavigate()
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('')
@@ -23,8 +26,10 @@ export const Login = () => {
     .post(url, user)
     .then((res)=>{
       setAuthenticated(true)
-      localStorage.setItem("authenticated", true);
+      localStorage.setItem("user", JSON.stringify(res.data));
       console.log(res.data);
+      navigate("/");
+
     })
     .catch((err)=>{
       setAuthenticated(false);

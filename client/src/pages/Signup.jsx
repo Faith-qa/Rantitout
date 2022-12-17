@@ -3,16 +3,20 @@ import '../styles.scss'
 import Add from '../img/addAvatar.png'
 import { useState } from 'react'
 import axios from 'axios'
+import { useNavigate, useNavigation } from 'react-router-dom'
 
 
 const url = `${process.env.REACT_APP_BASE_URL}/api/v1/users`;
 console.log(url)
 
 export const Signup = () => {
+  
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [image, setImage] = useState('');
+
+  const navigate = useNavigate()
   
   const uploadFile =async(file)=>{
     await axios.post(
@@ -27,12 +31,15 @@ export const Signup = () => {
   }
   const handleSubmit=async(e)=>{
     e.preventDefault();
-    const imageurl = await uploadFile(image);
-    const params = {name, email, password, imageurl}
+    //const imageurl = await uploadFile(image);
+    const params = {name, email, password}
     axios
       .post(url, params)
       .then((res)=> {
         console.log(res.data)
+        //localStorage.setItem("user", JSON.stringify(res.data));
+
+        navigate("/")
       })
       .catch((err)=>{
         console.log(err)

@@ -99,6 +99,24 @@ const updateUser = asyncHandler(async(req, res)=> {
     
 })
 
+//find a user 
+
+const getSpecificUser = asyncHandler(async(req, res)=> {
+    const {email} = req.body
+
+    try{
+        const userInfo = await User.find(email)
+
+        return res.status(200).json(userInfo)
+    }catch(err){
+        console.log(err)
+        res.status(404).json(err, {message: "user not found"})
+    }
+
+
+
+})
+
 
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET)
@@ -108,7 +126,8 @@ module.exports = {
     createUser,
     loginUser,
     getUsers,
-    updateUser
+    updateUser,
+    getSpecificUser
 }
 
 

@@ -4,7 +4,8 @@ const {
     createUser,
     loginUser,
     getUsers,
-    updateUser
+    updateUser,
+    getSpecificUser
 } = require('../controllers/userController');
 
 const {protect} = require('../middleware/authMiddleware')
@@ -15,6 +16,9 @@ router
         .post(createUser)
         .get(getUsers)
         .put(updateUser)
+router.get('/:email', getSpecificUser)
+
+
 
 router.post('/login', loginUser)
 router.post('/image', upload.single("userImage"), async(req, res)=>{
