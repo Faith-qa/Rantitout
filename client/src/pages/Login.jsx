@@ -3,7 +3,7 @@ import '../styles.scss'
 //import Add from '../img/addAvatar.png'
 import axios from "axios";
 import { useState, useRef } from 'react';
-import { useNavigate, useNavigation } from 'react-router-dom'
+import { useNavigate, Link} from 'react-router-dom'
 
 
 
@@ -15,29 +15,29 @@ export const Login = () => {
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('')
-  const [authenticated, setAuthenticated] = useState('')
+  const [err, setErr] = useState(false)
 
   const handleSubmit=(e) => {
     e.preventDefault();
   
   const user = {email, password}
-
-  axios
+  
+    axios
     .post(url, user)
     .then((res)=>{
-      setAuthenticated(true)
-      localStorage.setItem("user", JSON.stringify(res.data));
-      console.log(res.data);
+      localStorage.setItem("user",JSON.stringify(res.data));
       navigate("/");
 
-    })
-    .catch((err)=>{
-      setAuthenticated(false);
+      console.log(res.data);
+
+    }).catch((err)=>{
+      setErr(true);
       console.log(err)
     })
 
+  
 
-  }
+  };
   
   return (
     <div className='formContainer '>
@@ -49,8 +49,9 @@ export const Login = () => {
                 <input type="password" placeholder="password" required value={password} onChange={(e)=> setPassword(e.target.value)}/>
                 
                 <button>Sign in</button>
+                {err && <span>Something went wrong</span>}
             </form>
-            <p> you don't have an account? Sign up! </p>
+            <p> you don't have an account? <Link to="/signup">Sign up! </Link></p>
 
         </div>
 

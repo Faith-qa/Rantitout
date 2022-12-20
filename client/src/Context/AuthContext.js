@@ -12,12 +12,16 @@ export const AuthontextProvider = ({children})=>{
 
     useEffect(()=>{
         const authorized = () =>{
-            const user =  localStorage.getItem("user")!= null;
-            setCurrentUser(user)
-        
+
+            if (localStorage.getItem("user")!= null){
+                var user = JSON.parse(localStorage.getItem('user'))
+                setCurrentUser(user)
+
+            }
+            
         
     }
-        return authorized()
+        return authorized();
     }, []);
 
     return(

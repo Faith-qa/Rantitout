@@ -11,33 +11,37 @@ export const Signup = () => {
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [image, setImage] = useState('');
+	//const [image, setImage] = useState('');
 
 	const uploadFile = async (file) => {
+
+		
+
 		await axios
 			.post(
 				`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
 				file
 			)
 			.then((res) => {
-				console.log(res);
+				console.log("hello", res);
 				const data = res.data['secure_url'];
 				return data;
 			});
 	};
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		const file = e.target[3].files[0]
 		const formData = new FormData();
-		formData.append(`${email}-img`, image, image.name);
+		formData.append(`${email}-img`, file);
 		const imageurl = await uploadFile(formData);
 		const params = { name, email, password, imageurl };
 		axios
 			.post(url, params)
 			.then((res) => {
-				console.log(res.data);
+				console.log("hello this", res.data);
 			})
 			.catch((err) => {
-				console.log(err);
+				console.error(err);
 			});
 	};
 
@@ -75,9 +79,7 @@ export const Signup = () => {
 						style={{ display: 'none' }}
 						type='file'
 						id='file'
-						onchange={(e) => {
-							return setImage(e.target.files[0]);
-						}}
+						
 					/>
 					<label htmlFor='file'>
 						<img src={Add} alt='' />

@@ -4,15 +4,7 @@ const Chat = require('../model/chatModel')
 const createChat = asyncHandler(async(req, res)=> {
     const {
         date,
-        hi,
-        HowAreYou,
-        whatDidNotgoWellToday,
-        tellMeMore,
-        isThatAll,
-        whatAreWeLearning,
-        whatCanWeDoDifferently,
-        anyAdviceforUs,
-
+        message
     } = req.body
 
     const chat = await Chat.create(req.body);

@@ -7,16 +7,12 @@ const chatSchema = mongoose.Schema({
         ref: 'users'
     }, 
     date: {type: Date, unique: true, sparse: true},
-    hi: String,
-    HowAreYou: String,
-    whatDidNotgoWellToday: String,
-    tellMeMore: String,
-    isThatAll: String,
-    whatAreWeLearning: String,
-    whatCanWeDoDifferently: String,
-    anyAdviceforUs: String,
+   messages: [{message: String},{AImessage: String}]
+   
 },
 {
     timestamp: true
 }
-)
+);
+
+module.exports = mongoose.model('chats', chatSchema)

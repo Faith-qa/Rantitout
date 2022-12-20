@@ -1,17 +1,26 @@
 import React from 'react'
+import { useContext } from 'react'
+import { Navigate } from 'react-router-dom'
+import { useNavigate, useNavigation } from 'react-router-dom'
+import { AuthContext } from '../Context/AuthContext'
 
 export const Navbar = () => {
+  const {currentUser} = useContext(AuthContext)
+  const navigate = useNavigate()
+  
+  
 
   const logout = async()=>{
     localStorage.removeItem("user")
+    navigate("/login")
 
   }
   return (
     <div className='navbar'>
       <span className='logo'>MeTalk</span>
       <div className="user">
-        <img src="https://images.pexels.com/photos/1967902/pexels-photo-1967902.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-        <span>John</span>
+        <img src={currentUser.imageUrl} alt="" />
+        <span>{currentUser.name}</span>
         <button onClick={()=>logout()}>logout</button>
       </div>
     </div>

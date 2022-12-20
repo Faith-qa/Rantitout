@@ -19,6 +19,7 @@ app.use(function (req, res, next) {
 app.use(bodyParser.json())
 
 app.use('/api/v1/users', require('./routes/userRoute'));
+app.use('/api/v1/chats', require('./routes/chatRoute'))
   
 app.get("/", (req, res, next) => {
   return res.status(200).json({

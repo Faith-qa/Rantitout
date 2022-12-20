@@ -17,32 +17,27 @@ const createUser = asyncHandler(async (req, res)=> {
     }
     const userExists = await User.findOne({email});
 
-    if (userExists) {
-        res.status(201).json({
-            _id: userExists.id,
-            name: userExists,name,
-            email: userExists.email,
-            token: generateToken(userExists._id),
+    if (!userExists) {
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+    
+        const user = await User.create({
+            name,
+            email,
+            password: hashedPassword,
         });
-
-    }
-
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
-
-    const user = await User.create({
-        name,
-        email,
-        password: hashedPassword,
-    });
-
-    if (user) {
         res.status(201).json({
             _id: user.id,
             name: user.name,
             email: user.email,
             token: generateToken(user._id),
         })
+
+
+    }
+    else{
+        res.status(400);
+        throw new Error("hello looks like you have an account, kindly login")
     }
 
 })
