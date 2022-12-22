@@ -11,7 +11,7 @@ const {
 
 const {protect} = require('../middleware/authMiddleware')
 
-router.route('/').get(protect, getAllPlans)
+//router.route('/').get(protect, )
 
 router
 .route('/:id/:date')

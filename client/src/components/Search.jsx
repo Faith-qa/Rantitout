@@ -3,7 +3,6 @@ import React from 'react'
 import { useState, useContext } from 'react';
 import { AuthContext } from '../Context/AuthContext'
 
-const url = `${process.env.REACT_APP_BASE_URL}/api/v1/chats`;
 
 export const Search = () => {
   const [chatdate, setChatdate] = useState("");
@@ -11,16 +10,28 @@ export const Search = () => {
   const [err, setErr] = useState(false);
   const [messages, setMessages] = useState('')
   const {currentUser} = useContext(AuthContext)
-
   const userid = currentUser._id
 
+  const cdate = new Date()
 
 
-  const handleSearch = () => {
+  const url = `${process.env.REACT_APP_BASE_URL}/api/v1/chats/${userid}/${date}`;
+
+
+
+  const handleSearch = async () => {
+    const url = `${process.env.REACT_APP_BASE_URL}/api/v1/chats/${userid}/${new Date(date).toISOString()}`;
+
+
+    const headers = {
+      headers: { Authorization: `Bearer ${currentUser && currentUser.token}` },
+
+    }
+    console.log(headers)
+      
     
-
-    axios
-      .get(`url/${userid}/${chatdate}`)
+    await axios
+      .get(url, headers)
       .then((res)=>{
         console.log(res.data)
         setDate(res.data)
@@ -40,12 +51,17 @@ export const Search = () => {
     // check weather the group exists or not(chats collection)
     //if not create a new one
     try {
-      const res = await axios.get(`url/${userid}/${date}`)
+      const res = await axios.get(`url/${userid}/${chatdate}`)
 
       if (!res) {
-        const params = {messages, date}
-        const res = await axios.post(`url/${userid}/${date}`, 
+        const params = {messages:[], date}
+         await axios.post(url, 
         params)
+
+        //create user chat
+        
+
+        
       }
       
     }catch (err){
