@@ -4,46 +4,39 @@ import Add from '../img/addAvatar.png';
 import { useState } from 'react';
 import axios from 'axios';
 
-const url = `${process.env.REACT_APP_BASE_URL}/api/v1/users`;
-console.log(url);
+import { useSignup } from '../hooks/useSignup';
+
 
 export const Signup = () => {
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+
+	const {signup, error, isLoading} = useSignup()
 	//const [image, setImage] = useState('');
 
-	const uploadFile = async (file) => {
+	// const uploadFile = async (file) => {
 
 		
 
-		await axios
-			.post(
-				`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
-				file
-			)
-			.then((res) => {
-				console.log("hello", res);
-				const data = res.data['secure_url'];
-				return data;
-			});
-	};
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		const file = e.target[3].files[0]
-		const formData = new FormData();
-		formData.append(`${email}-img`, file);
-		const imageurl = await uploadFile(formData);
-		const params = { name, email, password, imageurl };
-		axios
-			.post(url, params)
-			.then((res) => {
-				console.log("hello this", res.data);
-			})
-			.catch((err) => {
-				console.error(err);
-			});
-	};
+	// 	await axios
+	// 		.post(
+	// 			`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
+	// 			file
+	// 		)
+	// 		.then((res) => {
+	// 			console.log("hello", res);
+	// 			const data = res.data['secure_url'];
+	// 			return data;
+	// 		});
+	// };
+
+	const handleSubmit = async(e) =>{
+		e.preventDefault()
+
+		await signup(name, email, password)
+	}
+	
 
 	return (
 		<div className='formContainer '>
@@ -85,7 +78,8 @@ export const Signup = () => {
 						<img src={Add} alt='' />
 						<span>Add an Avatar</span>
 					</label>
-					<button>Sign up</button>
+					<button disabled={isLoading}>Sign up</button>
+					{error && <div>{error}</div>}
 				</form>
 				<p> you have an account? Login </p>
 			</div>

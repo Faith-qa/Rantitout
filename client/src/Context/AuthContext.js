@@ -1,34 +1,31 @@
-import axios from "axios";
-import { createContext, useState, useEffect } from "react";
-
-
-
-const url = `${process.env.REACT_APP_BASE_URL}/api/v1/users`;
+import {createContext, useReducer} from 'react';
 
 export const AuthContext = createContext()
 
-export const AuthontextProvider = ({children})=>{
-    const [currentUser, setCurrentUser] = useState({})
-
-    useEffect(()=>{
-        const authorized = () =>{
-
-            if (localStorage.getItem("user")!= null){
-                var user = JSON.parse(localStorage.getItem('user'))
-                setCurrentUser(user)
-
-            }
-            
-        
+export const authReducer = (state, action) =>{
+    switch(action.type) {
+        case 'LOGIN': 
+            return {user: action.payload}
+        case 'LOGOUT':
+            return {user: null}
+        default:
+            return state
     }
-        return authorized();
-    }, []);
 
-    return(
+}
 
-    <AuthContext.Provider value={{currentUser}}>
-        {children}
-         
-    </AuthContext.Provider>
+export const AuthContextProvider = ({children})=>{
+    const [state, dispatch] = useReducer(authReducer, {
+        user: null, 
+    })
+
+    console.log('authContext state: ', state)
+
+    return (
+        <AuthContext.Provider value={{...state, dispatch}}>
+            { children }
+        </AuthContext.Provider>
+
     )
+
 }

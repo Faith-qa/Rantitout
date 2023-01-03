@@ -3,9 +3,10 @@ const router = express.Router();
 
 const {
     createChat,
-    deleteChat,
+    //deleteChat,
     updateChat,
-    getAChatonDate
+    getUserChats,
+    getUserChatDate
 
 } = require('../controllers/chatController')
 
@@ -15,8 +16,9 @@ const {protect} = require('../middleware/authMiddleware')
 
 router
 .route('/:id/:date')
-.get(protect, getAChatonDate)
+.get(protect, getUserChatDate)
 .post(protect, createChat)
 .put(protect, updateChat)
 
+router.route(':/id', protect, getUserChats)
 module.exports = router;

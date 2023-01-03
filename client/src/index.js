@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { AuthontextProvider } from './Context/AuthContext';
+import { AuthContextProvider, AuthProvider } from './Context/AuthContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <AuthontextProvider>
+  
     <React.StrictMode>
-    <App />
+      <AuthContextProvider>
+        <App />
+    </AuthContextProvider>
   </React.StrictMode>
-  </AuthontextProvider>
+  
   
 );

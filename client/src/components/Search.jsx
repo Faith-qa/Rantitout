@@ -5,36 +5,37 @@ import { AuthContext } from '../Context/AuthContext'
 
 
 export const Search = () => {
-  const [chatdate, setChatdate] = useState("");
-  const [date, setDate] = useState(null);
-  const [err, setErr] = useState(false);
-  const [messages, setMessages] = useState('')
-  const {currentUser} = useContext(AuthContext)
-  const userid = currentUser._id
+  const [chatdate, setChatdate] = useState('');
+  const [user, setUserid ] = useState(null)
+  const [err, setErr] = useState(false)
 
-  const cdate = new Date()
+  const { currentUser } = useContext(AuthContext);
 
+  console.log("hi", currentUser)
 
-  const url = `${process.env.REACT_APP_BASE_URL}/api/v1/chats/${userid}/${date}`;
+  const userp = JSON.parse(localStorage.getItem('user'))
+  const cdate = new Date(chatdate)
+  
+  const userid = userp._id
+
+  const url = `${process.env.REACT_APP_BASE_URL}/api/v1/chats/${userid}/${cdate}`;
 
 
 
   const handleSearch = async () => {
-    const url = `${process.env.REACT_APP_BASE_URL}/api/v1/chats/${userid}/${new Date(date).toISOString()}`;
-
-
-    const headers = {
-      headers: { Authorization: `Bearer ${currentUser && currentUser.token}` },
+    const url = `${process.env.REACT_APP_BASE_URL}/api/v1/chats/${userid}/${new Date(cdate).toISOString()}`;
+    const theheaders = {
+      headers: { Authorization: `Bearer ${userp.token}` },
 
     }
-    console.log(headers)
+    console.log(theheaders)
       
     
-    await axios
-      .get(url, headers)
+    axios
+      .get(url, theheaders)
       .then((res)=>{
         console.log(res.data)
-        setDate(res.data)
+        setChatdate(res.data)
         
       })
       .catch((err)=>{
@@ -54,7 +55,7 @@ export const Search = () => {
       const res = await axios.get(`url/${userid}/${chatdate}`)
 
       if (!res) {
-        const params = {messages:[], date}
+        const params = {messages:[], chatdate}
          await axios.post(url, 
         params)
 
@@ -76,7 +77,7 @@ export const Search = () => {
         <input type="date" onKeyDown={handleKey} onChange={e=>setChatdate(e.target.value)}/>
       </div>
       {err && <span>Chat not found</span>}
-      {date && <div className="userChat">
+      {chatdate && <div className="userChat">
         <img src="https://images.pexels.com/photos/1967902/pexels-photo-1967902.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""/>
         <div className="userChatInfo" onClick={handleSelect}></div>
         <span> 12/22/2022</span>

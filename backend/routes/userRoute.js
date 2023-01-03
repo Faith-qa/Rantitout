@@ -14,7 +14,7 @@ const {uploadToCloudinary, removeFromCloudinary} = require('../config/cloudinary
 router 
         .route('/')
         .post(createUser)
-        .get(getUsers)
+        .get(protect, getUsers)
         .put(updateUser)
 router.get('/:email', getSpecificUser)
 
