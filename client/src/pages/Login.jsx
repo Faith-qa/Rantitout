@@ -16,15 +16,17 @@ export const Login = () => {
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('')
-  const [err, setErr] = useState(false)
+  //const [err, setErr] = useState(false)
 
   const handleSubmit=async(e) => {
     e.preventDefault();
 
-    await login(email, password)
-    //navigate('/')
-  
-    
+    try{
+      await login(email, password)
+      navigate("/")
+    }catch(err){
+      console.log(error)
+    }
   
 
   };
@@ -39,7 +41,7 @@ export const Login = () => {
                 <input type="password" placeholder="password" required value={password} onChange={(e)=> setPassword(e.target.value)}/>
                 
                 <button disabled={isLoading}>Sign in</button>
-                {err && <span>{error}</span>}
+                {error && <span>{error}</span>}
             </form>
             <p> you don't have an account? <Link to="/signup">Sign up! </Link></p>
 

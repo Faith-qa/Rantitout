@@ -31,7 +31,7 @@ export const useLogin = () =>{
             if (!json.token){
                 setIsLoading(false)
                 setError(JSON.stringify(json))
-                throw new Error(json)
+                throw new Error(JSON.stringify(json))
             }
             //save the user to local storage
             localStorage.setItem('user', JSON.stringify(json))
@@ -41,6 +41,7 @@ export const useLogin = () =>{
             dispatch({type: 'LOGIN', payload: json})
 
             setIsLoading(false)
+
         }
     }
 

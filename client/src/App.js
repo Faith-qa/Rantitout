@@ -9,27 +9,29 @@ import {
 } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContextProvider } from "./Context/AuthContext";
-
+import { useAuthContext } from "./hooks/useAuthContext";
 
 function App() {
 
-  //const {currentUser} = useContext(AuthContext)
-  //console.log("this is the user", currentUser)
+  const {user} = useAuthContext()
+  console.log("this is the user", user)
   
-  // const ProtectedRoute = ({children})=>{
-  //   if(!currentUser){
-  //     return <Navigate to="/login"/>
-  //   }
-  //   // console.log("hello", children)
-  //   return children
-  //};
+  const ProtectedRoute = ({children})=>{
+    if(!user){
+      console.log("hello")
+      return <Navigate to="/login"/>
+    }
+    // console.log("hello", children)
+    return children
+  };
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/'>
           <Route index element={
-           
+            <ProtectedRoute>
               <Home />
+            </ProtectedRoute>
             } 
             />
           <Route path="login" element={<Login/>} />
