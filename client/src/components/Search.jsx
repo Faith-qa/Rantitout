@@ -8,9 +8,9 @@ import { useSearch } from '../hooks/useSearch';
 export const Search = () => {
   const [chatdate, setChatdate] = useState('');
   const [user, setUserid ] = useState(null)
-  const [err, setErr] = useState(false)
+  //const [err, setErr] = useState(false)
 
-  const {handlesearch} = useSearch()
+  const {handlesearch, err} = useSearch()
 
 
   // console.log("hi", currentUser)

@@ -15,6 +15,7 @@ export const useSearch = () => {
     const handlesearch = async(chatdate) =>{
         const url = `${process.env.REACT_APP_BASE_URL}/api/v1/chats/${user._id}/${new Date(chatdate).toISOString()}`;
         console.log(url)
+        setErr(null)
 
         try{
             const response = await fetch(url, {
@@ -22,7 +23,18 @@ export const useSearch = () => {
                 headers: {Authorization: `Bearer ${user.token}`}
             })
 
-            setChat(response.data)
+            //console.log(response.data)
+            const json = await response.json()
+           //console.log("hello", json)
+
+           if (json === 'chat was not found' || !json.user) {
+            setErr(JSON.stringify(json));
+            throw new Error(JSON.stringify(json))
+            //throw n ew Error("hello")
+           }
+           console.log(json)
+
+        
 
 
 

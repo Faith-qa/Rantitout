@@ -10,10 +10,10 @@ const userSchema = mongoose.Schema({
         type: String,
         required: [true, "user must have a password"]
     },
-    imageUrl: String
+    imageUrl: String,
     },
     {
-        timestamp: true,
+        timestamps: true,
     }
     
 

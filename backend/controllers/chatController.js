@@ -17,7 +17,7 @@ const createChat = asyncHandler(async(req, res)=> {
 const updateChat = asyncHandler(async(req, res) => {
     const updates = req.body
 
-    const newChat = await Chat.findOne({date: req.body.date}, updates, {new: true, upsert:true})
+    const newChat = await Chat.findOneAndUpdate({date: req.body.date}, updates, {new: true, upsert:true})
     return res.status(200).json(newChat)
 });
 
@@ -26,7 +26,7 @@ const getUserChats = asyncHandler(async(req, res)=>{
     const user = await User.findById(req.user.id);
 
     const chat = await Chat.find({user: req.params.id})
-    conaole.log(user)
+    console.log(user)
     if
     (!user) {
         res.status(401);
@@ -42,15 +42,29 @@ const getUserChats = asyncHandler(async(req, res)=>{
 });
 
 const getUserChatDate = asyncHandler(async (req, res)=>{
+
+   try {
+    console.log(req)
     const chat = await Chat.findOne({
         user: req.params.id,
-        date: new Date(req.params.date)
+        date: req.params.date,
     })
 
-    let toLog = chat ? chat: 'chat was not found'
+    console.log(chat)
 
-    res.status(200).json(chat);
+   let toLog = chat ? chat: 'chat was not found'
 
+//    if (toLog == 'chat was not found'){
+//     res.status(401)
+//     throw new Error(toLog)
+//    }
+  
+
+    res.status(200).json(toLog);
+
+   }catch(err){
+    console.log(err)
+   }
 });
 module.exports = {
     createChat,

@@ -6,12 +6,16 @@ const chatSchema = mongoose.Schema({
         required: false,
         ref: 'users'
     }, 
-    date: {type: Date, unique: true, sparse: true},
-   messages: [{message: String},{AImessage: String}]
+    date: {type: Date, unique: true, sparse: true, required: true},
+    messages: [{
+        chat1: String,
+        chat2: String
+            }]
    
-},
+}
+,
 {
-    timestamp: true
+    timestamps: true
 }
 );
 
