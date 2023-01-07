@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import { useAuthContext } from './useAuthContext'
 
 export const useSearch = () => {
-    const [err, setErr] = useState("null")
+    const [err, setErr] = useState(null)
     const [isLoading, setIsLoading] = useState(null)
     const [chat, setChat] = useState(null)
     const {user} = useAuthContext()
@@ -33,6 +33,8 @@ export const useSearch = () => {
             //throw n ew Error("hello")
            }
            console.log(json)
+
+           return JSON.stringify(json)
 
         
 
