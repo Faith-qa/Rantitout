@@ -20,5 +20,6 @@ router
 .post(protect, createChat)
 .put(protect, updateChat)
 
-router.route(':/id', protect, getUserChats)
+router.get('/:id', protect, getUserChats)
+
 module.exports = router;

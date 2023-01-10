@@ -7,10 +7,11 @@ import { useSearch } from '../hooks/useSearch';
 
 export const Search = () => {
   const [chatdate, setChatdate] = useState('');
+  //const [chat, setChat] = useState(null)
   const [user, setUserid ] = useState(null)
   //const [err, setErr] = useState(false)
 
-  const {handlesearch, err} = useSearch()
+  const {handlesearch, chat, err} = useSearch()
 
 
   // console.log("hi", currentUser)
@@ -29,38 +30,20 @@ export const Search = () => {
     e.code==="Enter" && handlesearch(chatdate);
   }
 
-  const handleSelect =async ()=>{
-    // check weather the group exists or not(chats collection)
-    //if not create a new one
-    try {
-      const res = await axios.get(`url/${userid}/${chatdate}`)
+  // const handleSelect =async ()=>{
+  //    console.log(chat.messages)
 
-      if (!res) {
-        const params = {messages:[], chatdate}
-         await axios.post(url, 
-        params)
-
-        //create user chat
-        
-
-        
-      }
-      
-    }catch (err){
-      console.log(err)
-    }
-
-  }
+  // }
 
   return (
     <div className='search'>
       <div className="searchForm">
-        <input type="date" onKeyDown={handleKey} onChange={e=>setChatdate(e.target.value)}/>
+        <input type="date" onKeyDown={handleKey} onChange={e=>setChatdate(e.target.value)} value={chatdate}/>
       </div>
-      {err && <span>Chat not found</span>}
-      {chatdate && <div className="userChat">
+      {err && <span>chat not found</span>}
+      {chat && <div className="userChat">
         <img src="https://images.pexels.com/photos/1967902/pexels-photo-1967902.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""/>
-        <div className="userChatInfo" onClick={handleSelect}></div>
+        <div className="userChatInfo" onClick={console.log(chat.messages)}></div>
         <span>{chatdate}</span>
       </div>}
     </div>

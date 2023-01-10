@@ -7,14 +7,34 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContextProvider } from "./Context/AuthContext";
+
 import { useAuthContext } from "./hooks/useAuthContext";
+import React, { useState, useEffect } from 'react';
+import io from 'socket.io-client';
+
+const socket = io();
 
 function App() {
+  //const [isConnected, setIsConnected] = useState(socket.connected);
 
   const {user} = useAuthContext()
   console.log("this is the user", user)
+
+  // // useEffect(() => {
+  // //   socket.on('connect', () => {
+  // //     setIsConnected(true);
+  // //   });
+
+  // //   socket.on('disconnect', () => {
+  // //     setIsConnected(false);
+  // //   });
+  // //   return () => {
+  // //     socket.off('connect');
+  // //     socket.off('disconnect');
+  // //    // socket.off('pong');
+  // //   };
+  // }, []);
+
   
   const ProtectedRoute = ({children})=>{
     if(!user){
@@ -22,6 +42,7 @@ function App() {
       return <Navigate to="/login"/>
     }
     // console.log("hello", children)
+    //console.log("connection successful" + isConnected)
     return children
   };
   return (
