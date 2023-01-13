@@ -1,15 +1,11 @@
 # TalkToMe
+TalkToMe is a serverless MERN web application that encourages personal journaling. It is a platform that allows you to record and save the pep talks and conversations you have with yourself daily, to help you work through good and bad days.
 
-TalkToMe is a serverless MERN web application with the ultimate goal of encouraging personal journaling.
-It is a platform that allows you to record those pep talks, and conversations you have with yourself daily to encourage and help you work through the good and bad days
+
 ## Installation
 To run it locally:
-
-1. clone the repository
-``` 
-git cl
-```
-Use the package manager [npm](https://www.npmjs.com/) to install TalkToMe
+1. Clone the repository: git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+2. Use the package manager [npm](https://www.npmjs.com/) to install TalkToMe:
 
 ```bash
 # install the backend
@@ -20,7 +16,7 @@ cd client
 npm i
 
 ```
-ensure to include your `.env variables` files in this format
+3. Create a .env file in the root of the backend and client directory and include the following variables:
 ```bash
 #for the backend:
 MONGODB_URI:
