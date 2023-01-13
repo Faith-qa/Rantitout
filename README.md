@@ -20,7 +20,18 @@ cd client
 npm i
 
 ```
+ensure to include your `.env variables` files in this format
+```bash
+#for the backend:
+MONGODB_URI:
+MONGODB_dbName:
+JWT_SECRET:
 
+# FOR THE CLIENT
+REACT_APP_BASE_URL=
+REACT_APP_CLOUD_NAME=
+
+```
 ## Usage
 ```bash
 # start the backend end and the client concurrently by:
