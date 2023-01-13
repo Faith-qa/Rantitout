@@ -35,6 +35,7 @@ export const useLogin = () =>{
             }
             //save the user to local storage
             localStorage.setItem('user', JSON.stringify(json))
+            //update state
 
             //update the auth context 
 
@@ -45,7 +46,8 @@ export const useLogin = () =>{
         }
     }
 
-    return {login, isLoading, error}
+    
+    return {login,isLoading, error, }
     
 
 }

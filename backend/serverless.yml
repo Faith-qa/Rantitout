@@ -16,7 +16,9 @@ functions:
   api:
     handler: handler.handler
     events:
-      - httpApi: '*'
+      - http: ANY /
+      - http: 'ANY {proxy+}'
+      - cors: true
 
 custom:
   serverless-offline:

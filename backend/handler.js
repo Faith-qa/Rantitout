@@ -2,7 +2,7 @@ const serverless = require("serverless-http");
 const express = require("express");
 const socket = require('socket.io')
 const app = express();
-const dotenv = require('dotenv').config()
+//const dotenv = require('dotenv').config()
 const {connectDB} = require('./config/db');
 const bodyParser = require('body-parser');
 
@@ -35,12 +35,12 @@ app.use('/api/v1/chats', require('./routes/chatRoute'))
 //   });
 // });
 
-// app.get("/hello", (req, res, next) => {
-//   console.log(req)
-//   return res.status(200).json({
-//     message: "Hello from path!",
-//   });
-// });
+app.get("/hello", (req, res, next) => {
+  console.log(req)
+  return res.status(200).json({
+    message: "Hello from path!",
+  });
+});
 
 // app.use((req, res, next) => {
 //   return res.status(404).json({

@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import { useAuthContext } from "./useAuthContext";
 
 export const useChats = () => {
-    const [chats, setChats] = useState(null);
+    const [chats, setChats] = useState([]);
     const [err, setErr] = useState(null);
 
     const {user} = useAuthContext();
@@ -11,7 +11,9 @@ export const useChats = () => {
 
     const loadChats = async() => {
         setErr(null)
+       // var chaats = []
         const url = `${process.env.REACT_APP_BASE_URL}/api/v1/chats/${user._id}`;
+
         try{
             const response = await fetch(url, {
                 method: 'GET',
@@ -26,22 +28,25 @@ export const useChats = () => {
                         setErr(json)
                         throw new Error(JSON.stringify(json))
                     }
+                  //  chaats.push(j)
                 }
+
 
                 
             }
+            //console.log(json.date)
 
             // if (!json.date) {
-            //     setErr(true)
+            //     setErr(json)
             //     throw new Error(JSON.stringify(json))
             // }
-
+            console.log("hello", JSON.parse(JSON.stringify(json)))
             setChats(json)
 
 
 
         }catch(err){
-            setErr(true);
+            setErr(err);
             console.log(err)
 
         }
