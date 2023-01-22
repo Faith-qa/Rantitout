@@ -9,7 +9,7 @@ export const useChats = () => {
     const {user} = useAuthContext();
 
 
-    const loadChats = async() => {
+    const loadChats = async()=>{
         setErr(null)
        // var chaats = []
         const url = `${process.env.REACT_APP_BASE_URL}/api/v1/chats/${user._id}`;
@@ -41,7 +41,7 @@ export const useChats = () => {
             //     throw new Error(JSON.stringify(json))
             // }
             console.log("hello", JSON.parse(JSON.stringify(json)))
-            setChats(json)
+            setChats(...json)
 
 
 
@@ -55,5 +55,5 @@ export const useChats = () => {
 
     }
 
-    return {loadChats, chats, err}
+    return {loadChats, chats, err};
 }
