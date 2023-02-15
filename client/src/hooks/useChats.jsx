@@ -1,12 +1,14 @@
 import React, {useState} from "react";
 
 import { useAuthContext } from "./useAuthContext";
+import { useChatContext } from "./useChatContext";
 
 export const useChats = () => {
     const [chats, setChats] = useState([]);
     const [err, setErr] = useState(null);
 
     const {user} = useAuthContext();
+    //const {dispatch} = useChatContext()
 
 
     const loadChats = async()=>{
@@ -40,8 +42,10 @@ export const useChats = () => {
             //     setErr(json)
             //     throw new Error(JSON.stringify(json))
             // }
-            console.log("hello", JSON.parse(JSON.stringify(json)))
+           // console.log("hello", JSON.parse(JSON.stringify(json)))
             setChats(...json)
+            //dispatch({type: 'LOADMESSAGES', payload: json})
+
 
 
 

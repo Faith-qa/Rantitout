@@ -4,13 +4,16 @@ import More from '../img/more.png'
 import Cam from '../img/cam.png'
 import  {Messages}  from './Messages'
 import {Input}from './Input'
+import { useChatContext} from "../hooks/useChatContext";
 
 
 export const Chat = () => {
+  const {chat_date} = useChatContext()
+
   return (
     <div className='chat'>
       <div className="chatInfo">
-        <span>Faith</span>
+        <span>{chat_date ? chat_date: "Date"}</span>
         <div className="chatIcons">
           <img src={Cam} alt = ""/>
           <img src={Add} alt=""/>
