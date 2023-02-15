@@ -2,7 +2,7 @@ const serverless = require("serverless-http");
 const express = require("express");
 const socket = require('socket.io')
 const app = express();
-//const dotenv = require('dotenv').config()
+const dotenv = require('dotenv').config()
 const {connectDB} = require('./config/db');
 const bodyParser = require('body-parser');
 

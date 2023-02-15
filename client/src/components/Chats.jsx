@@ -26,24 +26,6 @@ export const Chats = () => {
 
   }, [user._id]);
 
-  //console.log("this is it", _chats)
-
-  // const handleDateClick = (date) => {
-  //   _chats.map((chat)=> {
-  //     if (date === chat.date) {
-        
-  //         setMessages(chat.messages)
-  //         console.log(messages)
-          
-
-      
-
-  //     }
-
-  //   })
-
-  // }
-
   const handleSelect = (ch)=>{
     dispatch({type: "CHANGE_DATE", payload: ch})
   }

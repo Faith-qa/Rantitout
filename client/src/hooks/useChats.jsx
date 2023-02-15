@@ -9,12 +9,13 @@ export const useChats = () => {
 
     const {user} = useAuthContext();
     //const {dispatch} = useChatContext()
+    const url = `${process.env.REACT_APP_BASE_URL}/api/v1/chats/${user._id}`;
 
 
     const loadChats = async()=>{
         setErr(null)
        // var chaats = []
-        const url = `${process.env.REACT_APP_BASE_URL}/api/v1/chats/${user._id}`;
+        //const url = `${process.env.REACT_APP_BASE_URL}/api/v1/chats/${user._id}`;
 
         try{
             const response = await fetch(url, {
@@ -57,7 +58,30 @@ export const useChats = () => {
 
 
 
+
+
     }
 
-    return {loadChats, chats, err};
+    const updateChat = async(cDate, text) => {
+        setErr(null)
+        console.log(url +`/${cDate}`)
+
+        try{
+            //update chats on date
+            const response = await fetch(url +`/${cDate}`, {
+                method: 'PUT',
+                headers: {Authorization: `Bearer ${user.token}`, 'Content-Type': 'Application/json'},
+                body: JSON.stringify({text})
+            })
+
+            const json = await response.json();
+            console.log(json)
+            setChats(json)
+        }catch(err){
+            setErr(err);
+            console.log(err)
+        }
+    }
+
+    return {loadChats, updateChat, chats, err};
 }

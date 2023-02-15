@@ -15,9 +15,11 @@ const createChat = asyncHandler(async(req, res)=> {
 });
 
 const updateChat = asyncHandler(async(req, res) => {
-    const updates = req.body
+    // const updates = {
+    //     message: req.body.message
+    // }
 
-    const newChat = await Chat.findOneAndUpdate({date: req.body.date}, updates, {new: true, upsert:true})
+    const newChat = await Chat.findOneAndUpdate({date: req.params.date}, {$push:{messages:{chat1: req.body.text}}}, {new: true, upsert:true})
     return res.status(200).json(newChat)
 });
 
