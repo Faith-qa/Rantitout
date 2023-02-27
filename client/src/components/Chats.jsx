@@ -13,15 +13,18 @@ export const Chats = () => {
   const [messages, setMessages] = useState([])
   useEffect(() => {
     const getChats = async() => {
-      user._id && await loadChats();
+      if (user._id ){
+        await loadChats().then(()=>{
+        setChats(chats)
 
-      setChats([chats]);
+      }).catch((err)=>{
+        console.log(err) 
+      })
 
-    }
 
-    return () => {
-      getChats()
-    }
+    }}
+    getChats()
+
     
 
   }, [user._id]);
