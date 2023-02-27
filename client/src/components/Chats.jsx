@@ -11,25 +11,28 @@ export const Chats = () => {
   const { user } = useAuthContext();
   const [_chats, setChats] = useState([]);
   const [messages, setMessages] = useState([])
+  
   useEffect(() => {
     const getChats = async() => {
-      user._id && await loadChats();
+      if (user._id) {
+        await loadChats().then(()=>{
+          setChats(chats)
+        }).catch(()=>{
+          alert("error")
+        })
+        
 
-      setChats([chats]);
+      }
+    };
+  
+    getChats();
 
-    }
-
-    return () => {
-      getChats()
-    }
-    
-
-  }, [user._id]);
+  }, [user._id])
 
   const handleSelect = (ch)=>{
     dispatch({type: "CHANGE_DATE", payload: ch})
   }
-
+console.log(_chats)
   return (
     <div className="chats">
     {_chats.map((chat) => {
