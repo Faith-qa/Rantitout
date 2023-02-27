@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 
 import { useAuthContext } from "./useAuthContext";
 import { useChatContext } from "./useChatContext";
@@ -11,18 +11,50 @@ export const useChats = () => {
     //const {dispatch} = useChatContext()
     const url = `${process.env.REACT_APP_BASE_URL}/api/v1/chats/${user._id}`;
 
-    // useEffect(()=>{
-    //     LoadChats()
-    //     console.log(chats)
-    // }, [chats])
+
     const loadChats = async()=>{
-       const res = await fetch(url, {
-        method: 'GET',
-        headers: {Authorization: `Bearer ${user.token}`, 'Content-Type': 'Application/json'},
-       })
-       const res_json = await res.json()
-       console.log(res_json)
-       setChats(res_json)
+        setErr(null)
+       // var chaats = []
+        //const url = `${process.env.REACT_APP_BASE_URL}/api/v1/chats/${user._id}`;
+
+        try{
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {Authorization: `Bearer ${user.token}`}
+            })
+
+            const json = await response.json()
+
+            for (var i = 0; i < json.length; i++) {
+                for(var j = 0; j < i.length; j++) {
+                    if (!j.date){
+                        setErr(json)
+                        throw new Error(JSON.stringify(json))
+                    }
+                  //  chaats.push(j)
+                }
+
+
+                
+            }
+            //console.log(json.date)
+
+            // if (!json.date) {
+            //     setErr(json)
+            //     throw new Error(JSON.stringify(json))
+            // }
+           // console.log("hello", JSON.parse(JSON.stringify(json)))
+            setChats(...json)
+            //dispatch({type: 'LOADMESSAGES', payload: json})
+
+
+
+
+        }catch(err){
+            setErr(err);
+            console.log(err)
+
+        }
 
 
 
@@ -43,29 +75,13 @@ export const useChats = () => {
             })
 
             const json = await response.json();
+            console.log(json)
             setChats(json)
-            console.log("HELLO WORLD", chats)
         }catch(err){
             setErr(err);
             console.log(err)
         }
     }
 
-    const createChat = async(date)=> {
-        setErr(null)
-        try{
-            const response = await fetch(url + `/${date}`, {
-                method: 'POST',
-                headers: {Authorization: `Bearer ${user.token}`, 'Content-Type': 'Application/json'},
-                body: JSON.stringify({date})
-            })
-
-            const json = await response.json()
-            console.log("hello world",json)
-            setChats(json)
-        }catch(err){console.log(err); setErr(err)}
-
-    }
-
-    return {loadChats, updateChat,createChat, chats, err};
+    return {loadChats, updateChat, chats, err};
 }
