@@ -19,7 +19,7 @@ export const useChats = () => {
        })
        const res_json = await res.json()
        console.log(res_json)
-       setChats(res_json)
+       setChats([...res_json].sort((a,b)=>new Date(b.date) - new Date(a.date)))
 
 
 

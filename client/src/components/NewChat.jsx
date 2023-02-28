@@ -1,4 +1,5 @@
 import React from 'react'
+import AddIcon from '@mui/icons-material/Add';
 
 import { useChats } from "../hooks/useChats";
 
@@ -10,8 +11,11 @@ export default function NewChat() {
         await createChat(date)
     }
   return (
-    <div>
-        <button onClick={handleClick}>+</button>
+    <div className="userChat" >
+      new Chat
+      <AddIcon onClick={handleClick}></AddIcon>
+      
+      
     </div>
   )
 }
