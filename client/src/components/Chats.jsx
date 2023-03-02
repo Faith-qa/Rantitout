@@ -11,6 +11,7 @@ export const Chats = () => {
   const { user } = useAuthContext();
   const [_chats, setChats] = useState([]);
   const [messages, setMessages] = useState([])
+
   useEffect(() => {
     const getChats = async() => {
       if (user._id ){

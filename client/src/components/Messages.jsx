@@ -6,22 +6,22 @@ import { useChatContext} from "../hooks/useChatContext";
 export const Messages = () => {
   const [messages, setMessages] = useState([])
   const {_messages, chat_date} = useChatContext()
+  console.log("this is the chatdate", _messages)
+
 
   useEffect(()=>{
-    const unSub = async(chat_date) =>{ 
-      await chat_date && setMessages(_messages)
-      console.log(messages)
-      return messages
-
-    }
-    return () => {
-      unSub()
-    }
     
-  }, [chat_date])
+    const unSub = ()=>{
+      if(chat_date) {
+        setMessages(_messages)
+      }
+    };
+    unSub();
+    
+  }, [chat_date, _messages])
 
 
-  //console.log('Hello', messages)
+  console.log('Hello', messages)
   return (
     <div className='messages'>
       {messages.map(m=>(

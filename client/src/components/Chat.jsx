@@ -13,7 +13,7 @@ export const Chat = () => {
   return (
     <div className='chat'>
       <div className="chatInfo">
-        <span>{chat_date ? chat_date: "Date"}</span>
+        <span>{chat_date ? chat_date: new Date().toISOString()}</span>
         <div className="chatIcons">
           <img src={Cam} alt = ""/>
           <img src={Add} alt=""/>
