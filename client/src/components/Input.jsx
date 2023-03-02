@@ -12,12 +12,18 @@ export const Input = () => {
   const { updateChat, chats, err } = useChats();
 
   const handleSend = async()=>{
-    console.log(text)
-    await updateChat(chat_date, text)
-    console.log("i made it");
-    setText("")
+    var date = null
 
+    if (!chat_date || chat_date == null){
+      date = new Date().toISOString()
+      console.log(date)
+    }
+    else{
+      date = chat_date
 
+    }
+    await updateChat(date, text)
+    
     
   }
   
