@@ -16,11 +16,6 @@ export const Input = () => {
     await updateChat(chat_date, text)
     //await loadMessages(chat_date)
     setText("")
-
-
-   
-   
-    
     
   }
   

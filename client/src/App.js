@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 
 import { useAuthContext } from "./hooks/useAuthContext";
+import SignInSide from "./pages/Login";
 //import React, { useState, useEffect } from 'react';
 
 
@@ -38,7 +39,8 @@ function App() {
             </ProtectedRoute>
             } 
             />
-          <Route path="login" element={<Login/>} />
+         { /*<Route path="login" element={<Login/>} />*/}
+         <Route path="login" element={<SignInSide/>}/>
           <Route path="signup" element={<Signup/>} />
 
 
