@@ -20,6 +20,12 @@ export const ChatContextProvider = ({children}) => {
                     _messages: action.payload.messages,
                     chat_date: action.payload.date
                 };
+            case "UPDATE_MESSAGES":
+                return {
+                    _messages: action.payload.messages,
+                    chat_date: action.payload.date
+
+                }
             default:
                 return state;
         }

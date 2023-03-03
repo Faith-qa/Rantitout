@@ -180,8 +180,7 @@ $darkColor: #2f2d52;
 
 
             }
-            
-            .userChat{
+            .newChat{
                 padding: 10px;
                 display: flex;
                 align-items: center;
@@ -192,19 +191,41 @@ $darkColor: #2f2d52;
                 &:hover{
                     background-color: #2f2d52;
                 }
-                img{
-                    height: 50px;
-                    width: 50px;
-                    border-radius: 50%;
-                    object-fit: cover;
-                }
-                .userChatInfo{
-                    span{font-size: 18px;font-weight: 500;}
-                    p{font-size: 14px; color: lightgray}
-                }
-               
+            }
+            .chats {
+                padding: 10px;
+                height: calc(100% - 160px);
+                overflow: scroll;
 
-            }    
+
+                .userChat{
+                    padding: 10px;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    color: white;
+                    cursor: pointer;
+    
+                    &:hover{
+                        background-color: #2f2d52;
+                    }
+                    img{
+                        height: 50px;
+                        width: 50px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
+                    .userChatInfo{
+                        span{font-size: 18px;font-weight: 500;}
+                        p{font-size: 14px; color: lightgray}
+                    }
+                   
+    
+                }    
+                
+            }
+            
+            
         }
         
         .chat{

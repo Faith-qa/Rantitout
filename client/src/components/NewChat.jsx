@@ -7,11 +7,11 @@ export default function NewChat() {
    const {createChat} = useChats()
 
     const handleClick = async() =>{
-        const date = new Date()
+        const date = new Date().toISOString()
         await createChat(date)
     }
   return (
-    <div className="userChat" >
+    <div className="newChat" >
       new Chat
       <AddIcon onClick={handleClick}></AddIcon>
       

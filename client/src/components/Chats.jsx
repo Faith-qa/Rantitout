@@ -28,7 +28,7 @@ export const Chats = () => {
 
     
 
-  }, [user._id]);
+  }, [chats]);
 
   const handleSelect = (ch)=>{
     dispatch({type: "CHANGE_DATE", payload: ch})
@@ -39,7 +39,7 @@ export const Chats = () => {
 
     {_chats.map((chat) => {
       return (
-        <div className="userChat" onClick={()=>handleSelect(chat)}>
+        <div key={chat._id} className="userChat" onClick={()=>handleSelect(chat)}>
           <img
             src="https://images.pexels.com/photos/1967902/pexels-photo-1967902.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             alt=""

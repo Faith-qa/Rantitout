@@ -5,7 +5,7 @@ import { useChatContext} from "../hooks/useChatContext";
 export const Message = ({message}) => {
   const {_messages, chat_date} = useChatContext()
 
-  console.log("these are :", message)
+  //console.log("these are :", message)
   return (
     <div className='message owner'>
         <div className="messageInfo">

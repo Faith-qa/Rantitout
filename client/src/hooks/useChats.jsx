@@ -5,6 +5,9 @@ import { useChatContext } from "./useChatContext";
 
 export const useChats = () => {
     const [chats, setChats] = useState([]);
+    const {dispatch, _messages} = useChatContext()
+    const [message, setMessage] = useState([])
+
     const [err, setErr] = useState(null);
 
     const {user} = useAuthContext();
@@ -18,11 +21,27 @@ export const useChats = () => {
         headers: {Authorization: `Bearer ${user.token}`, 'Content-Type': 'Application/json'},
        })
        const res_json = await res.json()
-       console.log(res_json)
+       //console.log(res_json)
        setChats([...res_json].sort((a,b)=>new Date(b.date) - new Date(a.date)))
 
 
 
+
+
+    }
+
+    const loadMessages = async(cDate)=>{
+        console.log(url +`/${cDate}`)
+
+        const res = await fetch(url +`/${cDate}`, {
+            method: 'GET',
+            headers: {Authorization: `Bearer ${user.token}`, 'content-Type': 'Application/json'}
+        })
+
+        const res_json = await res.json()
+        //console.log(res_json)
+        await dispatch({Type: "UPDATE_MESSAGES", payload: res_json})
+        setMessage(_messages)
 
 
     }
@@ -40,8 +59,8 @@ export const useChats = () => {
             })
 
             const json = await response.json();
+
             setChats(json)
-            console.log("HELLO WORLD", chats)
         }catch(err){
             setErr(err);
             console.log(err)
@@ -64,5 +83,5 @@ export const useChats = () => {
 
     }
 
-    return {loadChats, updateChat,createChat, chats, err};
+    return {loadChats, updateChat,createChat, loadMessages, chats, err};
 }

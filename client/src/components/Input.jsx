@@ -6,15 +6,20 @@ import { useChats } from "../hooks/useChats";
 
 
 export const Input = () => {
-  const {_messages, chat_date} = useChatContext()
+  const {chat_date, dispatch} = useChatContext()
   const [text, setText] = useState("")
   const [img, setImg] = useState(null)
-  const { updateChat, chats, err } = useChats();
+  const { updateChat, loadMessages, chats, err } = useChats();
 
   const handleSend = async()=>{
    
     await updateChat(chat_date, text)
+    //await loadMessages(chat_date)
     setText("")
+
+
+   
+   
     
     
   }
