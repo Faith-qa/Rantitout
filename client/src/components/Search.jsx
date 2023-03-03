@@ -1,14 +1,11 @@
-import axios from 'axios';
 import React from 'react'
 import { useState } from 'react';
-import { AuthContext } from '../Context/AuthContext'
 import { useSearch } from '../hooks/useSearch';
 
 
 export const Search = () => {
   const [chatdate, setChatdate] = useState('');
   //const [chat, setChat] = useState(null)
-  const [user, setUserid ] = useState(null)
   //const [err, setErr] = useState(false)
 
   const {handlesearch, chat, err} = useSearch()
@@ -16,12 +13,11 @@ export const Search = () => {
 
   // console.log("hi", currentUser)
 
-  const userp = JSON.parse(localStorage.getItem('user'))
-  const cdate = new Date(chatdate)
+  //const userp = JSON.parse(localStorage.getItem('user'))
+  //const cdate = new Date(chatdate)
   
-  const userid = userp._id
+  //const userid = userp._id
 
-  const url = `${process.env.REACT_APP_BASE_URL}/api/v1/chats/${userid}/${cdate}`;
 
 
 

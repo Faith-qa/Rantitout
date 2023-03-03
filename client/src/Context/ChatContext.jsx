@@ -1,7 +1,6 @@
 import {
     createContext,
     useReducer,
-    useContext
 }  from 'react';
 
 export const ChatContext = createContext()

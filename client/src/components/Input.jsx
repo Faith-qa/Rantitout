@@ -6,10 +6,9 @@ import { useChats } from "../hooks/useChats";
 
 
 export const Input = () => {
-  const {chat_date, dispatch} = useChatContext()
+  const {chat_date} = useChatContext()
   const [text, setText] = useState("")
-  const [img, setImg] = useState(null)
-  const { updateChat, loadMessages, chats, err } = useChats();
+  const { updateChat} = useChats();
 
   const handleSend = async()=>{
    
@@ -25,7 +24,7 @@ export const Input = () => {
       <input type="text" placeholder='Type something ...' onChange={e=>setText(e.target.value)} value={text}/>
       <div className="send">
         <img src={Attach} alt=""/>
-        <input type='file' style={{display:"none"}} id= 'file' onChange={e=>setImg(e.target.files[0])}/>
+       {/* <input type='file' style={{display:"none"}} id= 'file' onChange={e=>setImg(e.target.files[0])}/>*/}
         <label htmlFor='file'>
           <img src={Img} alt=""/>
         </label>

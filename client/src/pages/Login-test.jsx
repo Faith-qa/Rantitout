@@ -12,7 +12,7 @@ console.log(url)
 
 export const Login = () => {
   const navigate = useNavigate()
-  const {login, error, isLoading} = useLogin()
+  const {login, error} = useLogin()
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('')
@@ -40,7 +40,7 @@ export const Login = () => {
                 <input type="email" placeholder='email' required value={email} onChange={(e)=> setEmail(e.target.value)}/>
                 <input type="password" placeholder="password" required value={password} onChange={(e)=> setPassword(e.target.value)}/>
                 
-                <button disabled={isLoading}>Sign in</button>
+                <button >Sign in</button>
                 {error && <span>{error}</span>}
             </form>
             <p> you don't have an account? <Link to="/signup">Sign up! </Link></p>

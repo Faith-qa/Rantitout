@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import  {useState, } from "react";
 
 import { useAuthContext } from "./useAuthContext";
 import { useChatContext } from "./useChatContext";
@@ -83,5 +83,5 @@ export const useChats = () => {
 
     }
 
-    return {loadChats, updateChat,createChat, loadMessages, chats, err};
+    return {loadChats, updateChat,createChat, loadMessages, message, chats, err};
 }

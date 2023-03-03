@@ -3,14 +3,12 @@ import React, { useState, useEffect } from "react";
 import { useChats } from "../hooks/useChats";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useChatContext} from "../hooks/useChatContext";
-import { Messages } from "./Messages";
 
 export const Chats = () => {
-  const { loadChats, chats, err } = useChats();
+  const { loadChats, chats,  } = useChats();
   const {dispatch} = useChatContext()
   const { user } = useAuthContext();
   const [_chats, setChats] = useState([]);
-  const [messages, setMessages] = useState([])
 
   useEffect(() => {
     const getChats = async() => {
@@ -28,7 +26,7 @@ export const Chats = () => {
 
     
 
-  }, [chats]);
+  }, [user._id, loadChats, chats]);
 
   const handleSelect = (ch)=>{
     dispatch({type: "CHANGE_DATE", payload: ch})

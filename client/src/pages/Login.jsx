@@ -1,5 +1,3 @@
-
-
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -33,7 +31,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignInSide() {
-    const {login, error, isLoading} = useLogin()
+    const {login, error, } = useLogin()
     const navigate = useNavigate()
 
 

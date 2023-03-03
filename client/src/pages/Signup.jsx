@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles.scss';
 import Add from '../img/addAvatar.png';
 import { useState } from 'react';
-import axios from 'axios';
+//import axios from 'axios';
 
 import { useSignup } from '../hooks/useSignup';
 

@@ -6,7 +6,7 @@ import { useChats } from "../hooks/useChats";
 export const Messages = () => {
   const [messages, setMessages] = useState([])
   const {_messages, chat_date} = useChatContext()
-  const {loadMessages, message} = useChats()
+  const {loadMessages, } = useChats()
   //console.log("this is the chatdate", _messages)
 
 
@@ -30,7 +30,7 @@ export const Messages = () => {
     
     unSub()
     
-}, [_messages])
+}, [_messages, chat_date, loadMessages])
 
 
   //console.log('Hello', messages)
