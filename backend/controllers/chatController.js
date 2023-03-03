@@ -3,12 +3,13 @@ const Chat = require('../model/chatModel')
 const User = require('../model/userModel')
 
 const createChat = asyncHandler(async(req, res)=> {
-    const {
-        date,
-        message
-    } = req.body
-
-    const chat = await Chat.create(req.body);
+    const body  = {
+        user: req.params.id,
+        date: req.params.date,
+    }
+//hello
+    const chat = await Chat.create(body);
+    console.log("new chat created", chat)
 
     return res.status(201).json(chat)
 
@@ -18,6 +19,7 @@ const updateChat = asyncHandler(async(req, res) => {
     // const updates = {
     //     message: req.body.message
     // }
+    
 
     const newChat = await Chat.findOneAndUpdate({date: req.params.date}, {$push:{messages:{chat1: req.body.text}}}, {new: true, upsert:true})
     return res.status(200).json(newChat)

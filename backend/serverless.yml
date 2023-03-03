@@ -10,11 +10,14 @@ provider:
 
 plugins:
   - serverless-offline
+  - serverless-dotenv-plugin
+
 
 
 functions:
   api:
     handler: handler.handler
+    timeout: 10
     events:
       - http: ANY /
       - http: 'ANY {proxy+}'
