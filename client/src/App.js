@@ -1,5 +1,5 @@
 import { Home } from "./pages/Home";
-import { Signup } from "./pages/Signup";
+//import SignUp  from "./pages/Signup";
 import {
   BrowserRouter,
   Routes,
@@ -9,6 +9,7 @@ import {
 
 import { useAuthContext } from "./hooks/useAuthContext";
 import SignInSide from "./pages/Login";
+import { Signup } from "./pages/signup-test";
 //import React, { useState, useEffect } from 'react';
 
 
