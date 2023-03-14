@@ -1,18 +1,25 @@
 import React from 'react';
 import '../styles.scss';
-import Add from '../img/addAvatar.png';
+//import Add from '../img/addAvatar.png';
 import { useState } from 'react';
 //import axios from 'axios';
-
+import { useNavigate} from 'react-router-dom'
 import { useSignup } from '../hooks/useSignup';
+//import { useUpload } from '../hooks/useFileUpload';
 
 
 export const Signup = () => {
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	//const [file, setFile] = useState(null)
 
-	const {signup, error, isLoading} = useSignup()
+	const navigate = useNavigate()
+
+
+
+	const {signup,  isLoading} = useSignup()
+	//const {handleFile, imageUrl} = useUpload()
 	//const [image, setImage] = useState('');
 
 	// const uploadFile = async (file) => {
@@ -33,8 +40,25 @@ export const Signup = () => {
 
 	const handleSubmit = async(e) =>{
 		e.preventDefault()
+		// const selectedFile = e.target.files[0]
+		// setFile(selectedFile)
 
-		await signup(name, email, password)
+		// const formData = new FormData()
+		// formData.append('file', selectedFile)
+		// formData.append('upload_preset', 'dwwxkbeeo')
+		// await handleFile(formData);
+		// if (imageUrl != null){
+
+			await signup(name, email, password)
+			navigate("/")
+
+
+		// }
+		// else {
+		// 	throw new Error("problem with image upload")
+			
+		// }
+
 	}
 	
 
@@ -68,7 +92,7 @@ export const Signup = () => {
 							setPassword(e.target.value);
 						}}
 					/>
-					<input
+					{/*<input
 						style={{ display: 'none' }}
 						type='file'
 						id='file'
@@ -77,9 +101,10 @@ export const Signup = () => {
 					<label htmlFor='file'>
 						<img src={Add} alt='' />
 						<span>Add an Avatar</span>
-					</label>
+					</label>*/}
 					<button disabled={isLoading}>Sign up</button>
-					{error && <div>{error}</div>}
+					{/*{isLoading && "uploading and compressing the image please wait..."}
+					{error && <div>{error}</div>}*/}
 				</form>
 				<p> you have an account? Login </p>
 			</div>
