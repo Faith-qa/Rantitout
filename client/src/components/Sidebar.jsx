@@ -3,7 +3,7 @@ import { Navbar} from '../components/Navbar'
 import { Search } from '../components/Search'
 import { Chats } from '../components/Chats'
 import NewChat from './NewChat'
-
+import { ThemeToggle } from './ThemeToggle'
 
 export const Sidebar = () => {
   return (
@@ -12,6 +12,7 @@ export const Sidebar = () => {
       <Search/>
       <NewChat/>
       <Chats/>
+
     </div>
   )
 }
