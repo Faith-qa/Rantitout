@@ -15,7 +15,7 @@ import { Signup } from "./pages/signup-test";
 
 function App() {
   //const [isConnected, setIsConnected] = useState(socket.connected);
-
+//const [darkMode, setDarkMode] = React.useState(true)
   const {user} = useAuthContext()
   console.log("this is the user", user)
 

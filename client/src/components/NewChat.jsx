@@ -2,6 +2,7 @@ import React from 'react'
 import AddIcon from '@mui/icons-material/Add';
 
 import { useChats } from "../hooks/useChats";
+//import ThemeToggle from './ThemeToggle';
 
 export default function NewChat() {
    const {createChat} = useChats()
@@ -14,6 +15,8 @@ export default function NewChat() {
     <div className="newChat" >
       new Chat
       <AddIcon onClick={handleClick}></AddIcon>
+     { /*<ThemeToggle/>*/}
+
       
       
     </div>
