@@ -1,2 +1,3 @@
 node_modules/
 reactnative-client/
+.env
