@@ -20,9 +20,9 @@ functions:
     timeout: 10
     events:
       - http: ANY /
-      - http: 'ANY {proxy+}'
+      - http: ANY {proxy+}
       - cors: true
 
 custom:
   serverless-offline:
-    httpPort: 5000
+    httpPort: 8080
