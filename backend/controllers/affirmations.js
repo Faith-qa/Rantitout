@@ -1,5 +1,4 @@
-import { openaiClient } from '../config/openai';
-
+const openaiClient = require('../config/openaiAff')
 const asyncHandler = require('express-async-handler')
 
 const generateAffirmations = asyncHandler(async(req, res)=>{
@@ -15,7 +14,7 @@ const generateAffirmations = asyncHandler(async(req, res)=>{
             n: 3,
         };
 
-        const response = await openaiClient.completions.create(options)
+        const response = await openaiClient.createCompletion(options)
 
         const affirmations = response.choices.map(choice => choice.text.trim());
 
@@ -23,7 +22,8 @@ const generateAffirmations = asyncHandler(async(req, res)=>{
 
     }catch(error){
         console.error( 'Error:', error);
-        res.status(500).json({error: 'Internal server Error'})
+        console.log("this is the error",error)
+        res.status(500).json({error: error})
     }
 } )
 
