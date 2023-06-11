@@ -5,19 +5,20 @@ const generateAffirmations = asyncHandler(async(req, res)=>{
     try{
         const {mood} = req.body;
         
-        const prompt = `As an AI language model, I'm here to provide you with affirmations based on your mood for the day. Your mood is ${mood}. Affirmation 1: `;
+        const prompt = `provide me with 3 affirmations based on my mood for the day. My mood is ${mood} `;
 
         const options = {
-            temperature: 0.7,
-            max_token: 50,
-            prompt: prompt,
-            n: 3,
+            model: "gpt-3.5-turbo",
+            temperature: 0,
+            max_tokens: 30,
+            messages: [{"role": "user", "content": prompt}],
+            
         };
 
-        const response = await openaiClient.createCompletion(options)
+        const response = await openaiClient.createChatCompletion(options)
+        console.log(response.data.choices[0].message)
 
-        const affirmations = response.choices.map(choice => choice.text.trim());
-
+        const affirmations = response.data.choices[0].message.content
         res.status(200).json({affirmations});
 
     }catch(error){
