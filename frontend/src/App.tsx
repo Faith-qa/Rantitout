@@ -26,8 +26,8 @@ function App() {
             </div>
           </div>
           <div className="chat-input-holder">
-            <textarea rows={1} className='chat-input-textarea' 
-             ></textarea>
+            <input className='chat-input-textarea' 
+             ></input>
           </div>
 
 
