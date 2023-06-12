@@ -2,37 +2,21 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import './normal.css'
+import { useState } from 'react';
+import ChatMessage from './components/ChatMessage';
+import Home from './pages/Home';
+import { useAuthContext } from "./hooks/useAuthContext";
+import Login from "./pages/Login";
+
 function App() {
+  //add state forv input and chat log
+  const {user} = useAuthContext();
+
+  
   return (
     <div className="App">
-      <aside className='sidemenu'>
-          <div className='side-menu-button'>
-            <span>+</span>
-            New Chat
-          </div>
-        </aside>
-        <section className= "chatbox">
-          
-          <div className='chat-log'>
-            <div className='chat-message'>
-              <div className='chat-message-center'>
-              <div className='avatar'>
-              </div>
-              <div className='message'>
-                hello world!
-              </div>
+      <Login/>
 
-              </div>
-            </div>
-          </div>
-          <div className="chat-input-holder">
-            <input className='chat-input-textarea' 
-             ></input>
-          </div>
-
-
-        </section>
-      
     </div>
   );
 }

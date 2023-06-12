@@ -16,6 +16,7 @@ const {protect} = require('../middleware/authMiddleware')
 
 router
 .route('/:id/:date')
+//.route('/:date')
 .get(protect, getUserChatDate)
 .post(protect, createChat)
 .put(protect, updateChat)
